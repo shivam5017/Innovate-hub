@@ -1,15 +1,19 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Img from "../Images/img.png";
-import { CustomBtn } from "../Components/buttons/button";
-// Sample project data
+import { CustomBtn, HeadingsBtn } from "../Components/buttons/button";
+import { GoGoal } from "react-icons/go";
+import { SiFuturelearn } from "react-icons/si";
+import { BsChatSquareQuote } from "react-icons/bs";
+import { GoFileMedia } from "react-icons/go";
+
 const projects = [
   {
     id: 1,
-    title: "Devs Mania",
-    status: "Live",
-    statusColor: "bg-green-500",
-    description: "Description",
+    title: "PDF Builder",
+    status: "Coming Soon",
+    statusColor: "bg-yellow-500",
+    description: "Build PDF's easy and fast with just 1 click",
     imageUrl: "path/to/your/image.jpg",
     projectUrl: "https://devsmania.com",
     media: [
@@ -18,10 +22,10 @@ const projects = [
       "path/to/screenshot3.jpg",
     ],
     goals:
-      "To provide a platform for developers to connect and share knowledge.",
+      "To provide a platform for users to convert simple text into PDF's.",
     testimonials: [
-      { name: "Alice", feedback: "This platform changed how I collaborate!" },
-      { name: "Bob", feedback: "A great resource for finding solutions." },
+      { name: "Alice", feedback: "This platform changed how I Build PDF's!" },
+      { name: "Bob", feedback: "A great resource for PDF's Building" },
     ],
     version: "1.0.0",
     futurePlans: "Adding more collaboration tools in the next release.",
@@ -69,18 +73,22 @@ const ProjectDetail = () => {
 
       {/* Project Links */}
       <div className="flex justify-center space-x-4 mb-6">
-        <CustomBtn text={"View Live"}/>
+        <CustomBtn>View Live</CustomBtn>
       </div>
 
       {/* Additional Information */}
       <div className="mb-6">
-        <h2 className="text-xl md:text-2xl font-bold mb-2 font-primary">Project Goals:</h2>
+      <div className="container mx-auto flex justify-center items-center text-center mb-12">
+        <HeadingsBtn text={"Goals"} icon={<GoGoal />} />
+      </div>
         <p className="text-md md:text-lg font-paragraph text-lightText">{project.goals}</p>
       </div>
 
       {/* Future Plans */}
       <div className="mb-6">
-        <h2 className="text-xl md:text-2xl font-bold mb-2 font-primary">Future Plans:</h2>
+      <div className="container mx-auto flex justify-center items-center text-center mb-12">
+        <HeadingsBtn text={"Future Plans"} icon={<SiFuturelearn />} />
+      </div>
         <p className="text-md md:text-lg font-paragraph text-lightText">
           {project.futurePlans}
         </p>
@@ -88,7 +96,9 @@ const ProjectDetail = () => {
 
       {/* Testimonials */}
       <div className="mb-6">
-        <h2 className="text-xl md:text-2xl font-bold mb-4 font-primary">Testimonials:</h2>
+      <div className="container mx-auto flex justify-center items-center text-center mb-12">
+        <HeadingsBtn text={"Testimonials"} icon={<BsChatSquareQuote />} />
+      </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {project.testimonials.map((test) => (
             <div
@@ -112,7 +122,9 @@ const ProjectDetail = () => {
 
       {/* Media Gallery */}
       <div>
-        <h2 className="text-xl md:text-2xl font-bold mb-2">Media:</h2>
+      <div className="container mx-auto flex justify-center items-center text-center mb-12">
+        <HeadingsBtn text={"Media"} icon={<GoFileMedia />} />
+      </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {project.media.map((mediaUrl, index) => (
             <img

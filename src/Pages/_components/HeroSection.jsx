@@ -23,7 +23,10 @@ const HeroSection = () => {
       </p>
 
       {/* Button */}
-      <CustomBtn text={"Join Community"} />
+      <CustomBtn
+        >
+          Join Community
+        </CustomBtn>
     </section>
   );
 };
