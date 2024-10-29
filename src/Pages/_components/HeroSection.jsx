@@ -1,4 +1,4 @@
-import CustomBtn from "../../Components/buttons/button";
+import {CustomBtn} from "../../Components/buttons/button";
 import FloatingIcons from "../../Components/floatingIcons/floatingIcons";
 
 const HeroSection = () => {
@@ -16,15 +16,14 @@ const HeroSection = () => {
       </div>
 
       {/* Subtitle */}
-      <p
-        className="text-sm sm:text-base md:text-lg text-lightText max-w-lg mx-auto mb-12 font-paragraph"
-      >
-        At InnovateHub, we create breakthrough solutions that push the limits of
-        technology and design
+      <p className="text-sm sm:text-base md:text-lg text-lightText max-w-xxl mx-auto mb-12 font-paragraph">
+        Discover a vibrant community where creativity comes to life! Our
+        platform allows users to share and showcase their unique projects across
+        various fields, including art, technology, writing, and more.
       </p>
 
       {/* Button */}
-      <CustomBtn text={"Get Started"} />
+      <CustomBtn text={"Join Community"} />
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import { useTheme } from "./Contexts/ThemeContext";
-import HomePage from "./Pages/HomePage";
+import AllRouter from "./AllRoutes/AllRoutes"
 import Navbar from "./Components/navbar/Navbar";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       } min-h-screen bg-background text-text  `}
     >
       <Navbar />
-      <HomePage />
+      <AllRouter />
     </div>
   );
 }
