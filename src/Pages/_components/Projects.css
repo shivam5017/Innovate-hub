@@ -1,0 +1,9 @@
+/* Add this to your CSS file */
+.slick-slide {
+    opacity: 0.5;
+    transition: opacity 0.5s ease;
+  }
+  
+  .slick-active {
+    opacity: 1;
+  }

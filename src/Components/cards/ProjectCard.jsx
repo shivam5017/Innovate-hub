@@ -1,35 +1,32 @@
-import React, { useState } from "react";
-import CustomBtn from "../buttons/button";
+import React from "react";
+import { CustomBtn } from "../buttons/button";
 import "./ProjectCard.css";
-import Wave from "../wavedesign/wave"
+import Wave from "../wavedesign/wave";
+import { FaUserFriends } from "react-icons/fa"; // Import an icon for the team/user
 
-const ProjectCard = ({ title, status, statusColor, description, imageUrl }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const maxDescriptionLength = 100; // Adjust this number based on your preference
-
-  // Toggle the description expansion
-  const toggleDescription = () => setIsExpanded(!isExpanded);
-
-  // Determine if description needs truncation
-  const shouldTruncate = description.length > maxDescriptionLength;
-  const displayText = isExpanded
-    ? description
-    : description.slice(0, maxDescriptionLength) + "...";
-
+const ProjectCard = ({
+  title,
+  status,
+  statusColor,
+  description,
+  imageUrl,
+  id,
+  teamName,
+}) => {
   return (
-    <div className="flex flex-col sm:flex-row items-center bg-background text-text rounded-lg shadow-xl w-full sm:w-3/4 lg:w-full p-6 mb-8 max-h-full relative overflow-hidden transition-transform duration-500 hover:translate-y-[-4px] cursor-pointer border-2 border-lightText hover:border-accent">
+    <div className="flex flex-col md:flex-row items-center bg-background text-text rounded-lg shadow-xl w-full p-6 mb-8 max-h-full h-full lg:w-full lg:h-96 relative overflow-hidden transition-transform duration-500 hover:translate-y-[-4px] cursor-pointer border-2 border-lightText hover:border-accent justify-center ">
       <Wave />
       {/* Image Section */}
-      <div className="w-32 h-32 bg-gray-300 rounded-full sm:mr-8 flex-shrink-0">
+      <div className="w-48 h-48 bg-gray-300 rounded-full sm:mr-8 flex-shrink-0 flex items-center justify-center">
         <img
           src={imageUrl}
           alt={`${title} logo`}
-          className="w-full h-full rounded-full object-cover"
+          className="w-full h-full rounded-full object-contain"
         />
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-col justify-center flex-grow p-4 sm:p-0">
+      <div className="flex flex-col justify-center flex-grow p-2 sm:p-0 items-center text-center">
         {/* Status Indicator */}
         <div className="absolute top-4 right-4 flex items-center space-x-2">
           <span
@@ -43,15 +40,27 @@ const ProjectCard = ({ title, status, statusColor, description, imageUrl }) => {
           {title}
         </h2>
 
+        {/* Team Section */}
+        {teamName && (
+          <div className="flex items-center space-x-2 mb-4">
+            <FaUserFriends className="text-accent" />
+            <span className="text-sm font-paragraph text-lightText">
+              {teamName}
+            </span>
+          </div>
+        )}
+
         {/* Description */}
-        <p className="text-sm font-paragraph text-text mb-6 ">
-          {displayText}
-          {shouldTruncate && (
+        <p className="text-sm font-paragraph text-lightText mb-6 ">
+          {description.length > 100 ? description.slice(0, 100) : description}
+          {description.length > 100 && (
             <span
-              onClick={toggleDescription}
-              className="text-accent cursor-pointer ml-2"
+              onClick={() => {
+                /* Add navigation logic here */
+              }}
+              className="text-accent cursor-pointer"
             >
-              {isExpanded ? "Read Less" : "Read More"}
+              {" ...Read More"}
             </span>
           )}
         </p>
