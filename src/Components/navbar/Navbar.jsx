@@ -3,6 +3,7 @@ import { useTheme } from "../../Contexts/ThemeContext";
 import ToggleButton from "../buttons/ToggleButton";
 import {CustomBtnWithIcon} from "../buttons/button";
 import { useNavigate } from "react-router-dom";
+import { IoMdLogIn } from "react-icons/io";
 
 const Navbar = () => {
   const navigate=useNavigate();
@@ -15,7 +16,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center font-paragraph ">
           <ToggleButton onClick={toggleTheme} />
-          <CustomBtnWithIcon text={'Login'}/>
+          <CustomBtnWithIcon text={'Login'} icon={<IoMdLogIn />}/>
         </div>
       </nav>
     </header>
