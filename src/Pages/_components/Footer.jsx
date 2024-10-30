@@ -42,22 +42,22 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-2 font-primary">Elsewhere</h3>
           <ul className="space-y-1 text-sm font-paragraph text-lightText">
             <li>
-              <button  >
+              <button>
                 X
               </button>
             </li>
             <li>
-              <button  >
+              <button>
                 Discord
               </button>
             </li>
             <li>
-              <button  >
+              <button>
                 Github
               </button>
             </li>
             <li>
-              <button  >
+              <button>
                 YouTube
               </button>
             </li>
