@@ -1,8 +1,5 @@
-Here’s a sample README file for your InnovateHub project:
 
----
-
-# InnovateHub
+# InnovateHub (Under Development)
 
 Welcome to InnovateHub! We are the parent company of innovative SaaS platforms designed to empower businesses and enhance productivity. Our mission is to deliver tailored solutions that meet the unique needs of our clients.
 
@@ -12,11 +9,9 @@ InnovateHub creates a diverse range of SaaS tools that help organizations stream
 
 ## Platforms
 
-- **[Platform Name 1]**: Brief description of the platform and its features.
-- **[Platform Name 2]**: Brief description of the platform and its features.
-- **[Platform Name 3]**: Brief description of the platform and its features.
+- **[PDF Builder]**: A Easy & Fast way to build PDF's in just 1 click. 
 
-(You can add more platforms as needed)
+
 
 ## Features
 
@@ -27,14 +22,11 @@ InnovateHub creates a diverse range of SaaS tools that help organizations stream
 
 ## Getting Started
 
-1. Visit our website: [your-website-url.com]
-2. Explore our platforms and find the right solutions for your needs.
-3. Sign up for a demo or create an account to get started.
+1. Visit our website: https://innovatehubhq.netlify.app
+2. Explore our platforms and find the right solutions for your needs. 
+
 
 ## Support
 
-For any questions or support, please contact us at [support@your-website-url.com].
+Coming Soon
 
----
-
-Feel free to customize it further to include specific platform details or additional sections!
