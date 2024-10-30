@@ -9,7 +9,7 @@ const Navbar = () => {
   const navigate=useNavigate();
   const { toggleTheme } = useTheme();
   return (
-    <header className="flex py-3 fixed top-0 w-full z-10 bg-transparent " >
+    <header className="flex py-3 fixed top-0 w-full z-10 bg-transparent backdrop-blur-md" >
       <nav className="flex items-center justify-between gap-3 container">
         <div className="cursor-pointer" onClick={()=>navigate('/')}>
           <h1 className="font-primary font-bold">Innovate <span style={{color:'var(--accent)'}}>HUB</span></h1>
