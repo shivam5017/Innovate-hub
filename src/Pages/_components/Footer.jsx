@@ -46,12 +46,12 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-2 font-primary">Elsewhere</h3>
           <ul className="space-y-1 text-sm font-paragraph text-lightText">
             <li>
-              <button>
+              <button onClick={() => window.open("https://x.com/Innovate_Hub_HQ", "_blank")} >
                 X
               </button>
             </li>
             <li>
-              <button>
+              <button onClick={()=> window.open("https://discord.gg/xtYsPCCC","_blank")}>
                 Discord
               </button>
             </li>

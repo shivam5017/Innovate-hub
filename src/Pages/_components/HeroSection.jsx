@@ -1,4 +1,4 @@
-import {CustomBtn} from "../../Components/buttons/button";
+import { CustomBtn } from "../../Components/buttons/button";
 import FloatingIcons from "../../Components/floatingIcons/floatingIcons";
 
 const HeroSection = () => {
@@ -17,16 +17,13 @@ const HeroSection = () => {
 
       {/* Subtitle */}
       <p className="text-sm sm:text-base md:text-lg text-lightText max-w-xxl mx-auto mb-12 font-paragraph">
-        Discover a vibrant community where creativity comes to life! Our
-        platform allows users to share and showcase their unique projects across
-        various fields, including art, technology, writing, and more.
+        Explore innovative SaaS businesses, empowering
+        users across art, technology, writing, and beyond! Join us in
+        transforming ideas into impactful solutions!
       </p>
 
       {/* Button */}
-      <CustomBtn
-        >
-          Join Community
-        </CustomBtn>
+      <CustomBtn>Join Community</CustomBtn>
     </section>
   );
 };

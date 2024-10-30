@@ -5,7 +5,7 @@ const CustomBtn = ({ children, onClick, variant, size,disabled }) => {
   return (
     <button
       onClick={onClick}
-      className={`px-8 py-3 rounded-full text-sm transition-all shadow-[0_0_15px_rgba(0,255,0,0.5)] ${variant} ${size} ${disabled ? 'cursor-not-allowed' : ''}`}
+      className={`px-8 py-3 rounded-full text-sm transition-all shadow-[0_0_15px_rgba(0,255,0,0.5)] font-paragraph ${variant} ${size} ${disabled ? 'cursor-not-allowed' : ''}`}
       disabled={disabled}
     >
       {children}
@@ -14,9 +14,9 @@ const CustomBtn = ({ children, onClick, variant, size,disabled }) => {
 };
 
 
-const CustomBtnWithIcon = ({ text,icon }) => {
+const CustomBtnWithIcon = ({ text,icon,onClick }) => {
   return (
-    <button className="relative p-1.5 md:p-3 flex  text-sm text-text border-accent items-center gap-3 rounded-full  transition-all shadow-[0_0_15px_rgba(0,255,0,0.5)] bg-background">
+    <button className="relative p-1.5 md:p-3 flex font-paragraph text-sm text-text border-accent items-center gap-3 rounded-full  transition-all shadow-[0_0_15px_rgba(0,255,0,0.5)] bg-background" onClick={onClick}>
       <span>{icon}</span>
       <h4 className="text-sm hidden md:block ">{text}</h4>
     </button>

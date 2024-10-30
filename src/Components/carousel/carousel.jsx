@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { CustomBtn } from "../buttons/button";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Img from "../../Images/img.png"; 
-import Wave from "../svgs/wave";
+
 
 const projects = [
   {
@@ -28,7 +28,7 @@ const projects = [
     ],
     version: "1.0.0",
     futurePlans: "Adding more collaboration tools in the next release.",
-  },
+  }
   // Add more projects as needed
 ];
 
@@ -59,7 +59,9 @@ export default function Carousel() {
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {projects.map((project) => (
+            
             <div key={project.id} className="w-full flex-shrink-0 ">
+               
               <div className="grid grid-cols-1 gap-4 rounded-xl border-2 p-4 lg:grid-cols-5">
                 <div 
                   className="col-span-1 flex flex-col overflow-hidden rounded-xl bg-accent/30 md:col-span-3 cursor-pointer 
@@ -68,7 +70,7 @@ export default function Carousel() {
                 >
                 
                   <div className="mb-4 flex items-center">
-                  <Wave />
+                 
                     <img
                       src={Img}
                       alt={project.title}
