@@ -1,6 +1,10 @@
 import { CustomBtn } from "../../Components/buttons/button";
+import {useNavigate} from "react-router-dom"
 
 const Footer = () => {
+  const navigate=useNavigate();
+
+
   return (
     <footer className="p-8 md:px-16 lg:px-32 relative">
       {/* Top section */}
@@ -20,7 +24,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-2 font-primary">About</h3>
           <ul className="space-y-1 text-sm font-paragraph text-lightText">
             <li>
-              <button >
+              <button onClick={()=>navigate('/team')}>
                 Our Team
               </button>
             </li>
@@ -77,7 +81,7 @@ const Footer = () => {
           placeholder="Enter email for updates"
           className="p-2 rounded-full w-full max-w-md focus:outline-none bg-text text-background"
         />
-        <CustomBtn className="transition-colors p-2 px-4 rounded-full sm:rounded-r-lg">
+        <CustomBtn className="transition-colors p-2 px-4 rounded-full sm:rounded-r-lg" >
           Submit
         </CustomBtn>
       </div>

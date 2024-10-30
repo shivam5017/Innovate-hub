@@ -1,11 +1,12 @@
 
 
 
-const CustomBtn = ({ children, onClick, variant, size }) => {
+const CustomBtn = ({ children, onClick, variant, size,disabled }) => {
   return (
     <button
       onClick={onClick}
-      className={`px-8 py-3 rounded-full text-sm transition-all shadow-[0_0_15px_rgba(0,255,0,0.5)] ${variant} ${size}`}
+      className={`px-8 py-3 rounded-full text-sm transition-all shadow-[0_0_15px_rgba(0,255,0,0.5)] ${variant} ${size} ${disabled ? 'cursor-not-allowed' : ''}`}
+      disabled={disabled}
     >
       {children}
     </button>

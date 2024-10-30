@@ -73,7 +73,7 @@ const ProjectDetail = () => {
 
       {/* Project Links */}
       <div className="flex justify-center space-x-4 mb-6">
-        <CustomBtn>View Live</CustomBtn>
+        <CustomBtn disabled={project.status!=="Live"}>{project.status}</CustomBtn>
       </div>
 
       {/* Additional Information */}
