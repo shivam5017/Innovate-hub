@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import HomePage from "../Pages/HomePage";
 import ProjectDetail from "../Pages/Projects[id]";
+import TeamPage from "../Pages/Team";
 
 const pageTransition = {
   initial: { opacity: 0, y: 20 },
@@ -42,6 +43,20 @@ const AllRouter = () => {
               transition={pageTransition.transition}
             >
               <ProjectDetail />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/team"
+          element={
+            <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={pageTransition}
+              transition={pageTransition.transition}
+            >
+              <TeamPage />
             </motion.div>
           }
         />

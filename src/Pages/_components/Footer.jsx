@@ -20,19 +20,19 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-2 font-primary">About</h3>
           <ul className="space-y-1 text-sm font-paragraph text-lightText">
             <li>
-              <a href="#" >
+              <button >
                 Our Team
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" >
+              <button  >
                 Privacy Policy
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" >
+              <button  >
                 Terms & Conditions
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -42,24 +42,24 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-2 font-primary">Elsewhere</h3>
           <ul className="space-y-1 text-sm font-paragraph text-lightText">
             <li>
-              <a href="#" >
+              <button>
                 X
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" >
+              <button>
                 Discord
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" >
+              <button>
                 Github
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" >
+              <button>
                 YouTube
-              </a>
+              </button>
             </li>
           </ul>
         </div>
