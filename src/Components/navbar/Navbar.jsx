@@ -4,6 +4,7 @@ import ToggleButton from "../buttons/ToggleButton";
 import {CustomBtnWithIcon} from "../buttons/button";
 import { useNavigate } from "react-router-dom";
 import { IoMdLogIn } from "react-icons/io";
+import { Twitter } from "../svgs/AllSvgs";
 
 const Navbar = () => {
   const navigate=useNavigate();
@@ -16,7 +17,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center font-paragraph ">
           <ToggleButton onClick={toggleTheme} />
-          <CustomBtnWithIcon text={'Login'} icon={<IoMdLogIn />}/>
+          <CustomBtnWithIcon text={"Follow"} icon={<Twitter />} onClick={() => window.open("https://x.com/Innovate_Hub_HQ", "_blank")} />
         </div>
       </nav>
     </header>
