@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CustomBtnWithIcon } from "../Components/buttons/button";
-import { GitHubIcon, LinkedIn, Twitter } from "../Components/svgs/AllSvgs";
+import { GitHubIcon, LinkedIn } from "../Components/svgs/AllSvgs";
 import { client } from "../sanityClient"; // Import the Sanity client
 import { Skeleton } from "@mui/material"; // Import Skeleton from MUI
 

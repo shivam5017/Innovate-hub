@@ -12,7 +12,7 @@ const ProjectDetail = () => {
   const { id } = useParams(); // Get the project ID from the URL
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -42,7 +42,7 @@ const ProjectDetail = () => {
         
         setProject(projectData);
       } catch (err) {
-        setError("Error fetching project details.");
+        console.log(err)
       } finally {
         setLoading(false);
       }
