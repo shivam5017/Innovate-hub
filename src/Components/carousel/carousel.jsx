@@ -3,6 +3,7 @@ import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { CustomBtn } from "../buttons/button";
 import { useNavigate } from "react-router-dom";
+import { urlFor } from "../../sanityClient"; // Import urlFor function
 
 export default function Carousel({ projects }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,7 +39,7 @@ export default function Carousel({ projects }) {
                 >
                   <div className="mb-4 flex items-center">
                     <img
-                      src={project.image?.url}
+                      src={urlFor(project.image).url()} // Use urlFor for the small image
                       alt={project.title}
                       className="mr-4 h-12 w-12 rounded-full"
                     />
@@ -58,9 +59,9 @@ export default function Carousel({ projects }) {
                 </div>
                 <div className="rounded-xl border-2 bg-primary/5 drop-shadow-2xl md:col-span-2 h-64">
                   <img
-                    src={project.image?.url}
+                    src={urlFor(project.image).url()} // Use urlFor for the large image
                     className="w-full h-full object-cover rounded-lg shadow-lg"
-                    alt={`${project.title}`}
+                    alt={project.title}
                   />
                 </div>
               </div>

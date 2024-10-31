@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { client } from "../sanityClient"; // Import your Sanity client
+import {client, urlFor } from "../sanityClient"; // Import your Sanity client and urlFor function
 import { CustomBtn, HeadingsBtn } from "../Components/buttons/button";
 import { GoGoal } from "react-icons/go";
 import { SiFuturelearn } from "react-icons/si";
@@ -12,7 +12,6 @@ const ProjectDetail = () => {
   const { id } = useParams(); // Get the project ID from the URL
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -42,7 +41,7 @@ const ProjectDetail = () => {
         
         setProject(projectData);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       } finally {
         setLoading(false);
       }
@@ -65,7 +64,6 @@ const ProjectDetail = () => {
     );
   }
 
-
   return (
     <div className="flex flex-col container mx-auto pt-24 pb-8 text-center">
       {/* Title and Status */}
@@ -80,7 +78,7 @@ const ProjectDetail = () => {
 
       {/* Project Image */}
       <img
-        src={project?.image?.url} // Access the URL correctly from the nested structure
+        src={urlFor(project?.image).url()} // Use urlFor to get the image URL
         className="w-full h-auto rounded-lg shadow-lg mb-6"
         alt={project?.title}
       />
@@ -144,7 +142,7 @@ const ProjectDetail = () => {
             project?.media.map((mediaItem, index) => (
               <img
                 key={index}
-                src={mediaItem.asset.url} // Use the URL from the asset reference
+                src={urlFor(mediaItem.asset).url()} // Use urlFor for media items
                 className="w-full h-auto rounded-lg shadow-lg"
                 alt={`Media ${index + 1}`}
               />
