@@ -23,7 +23,7 @@ const HeroSection = () => {
       </p>
 
       {/* Button */}
-      <CustomBtn>Join Community</CustomBtn>
+      <CustomBtn onClick={()=> window.open("https://discord.gg/xtYsPCCC","_blank")}>Join Community</CustomBtn>
     </section>
   );
 };

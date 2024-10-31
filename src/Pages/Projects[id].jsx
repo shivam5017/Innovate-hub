@@ -1,139 +1,157 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Img from "../Images/img.png";
+import { client } from "../sanityClient"; // Import your Sanity client
 import { CustomBtn, HeadingsBtn } from "../Components/buttons/button";
 import { GoGoal } from "react-icons/go";
 import { SiFuturelearn } from "react-icons/si";
 import { BsChatSquareQuote } from "react-icons/bs";
 import { GoFileMedia } from "react-icons/go";
-
-const projects = [
-  {
-    id: 1,
-    title: "PDF Builder",
-    status: "Coming Soon",
-    statusColor: "bg-yellow-500",
-    description: "Build PDF's easy and fast with just 1 click",
-    imageUrl: "path/to/your/image.jpg",
-    projectUrl: "https://devsmania.com",
-    media: [
-      "path/to/screenshot1.jpg",
-      "path/to/screenshot2.jpg",
-      "path/to/screenshot3.jpg",
-    ],
-    goals:
-      "To provide a platform for users to convert simple text into PDF's.",
-    testimonials: [
-      { name: "Alice", feedback: "This platform changed how I Build PDF's!" },
-      { name: "Bob", feedback: "A great resource for PDF's Building" },
-    ],
-    version: "1.0.0",
-    futurePlans: "Adding more collaboration tools in the next release.",
-  },
-  // Add more projects as needed
-];
+import { Skeleton } from '@mui/material'; // Import MUI Skeleton
 
 const ProjectDetail = () => {
   const { id } = useParams(); // Get the project ID from the URL
-  const projectId = parseInt(id, 10); // Convert to a number
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Find the project that matches the ID
-  const project = projects.find((proj) => proj.id === projectId);
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const projectData = await client.fetch(
+          `*[_type == "project" && _id == $id][0]{
+             _id,
+            title,
+            status,
+            statusColor,
+            description,
+            image,
+            projectUrl,
+            media[]{
+              asset->{
+                _id,
+                url
+              }
+            },
+            goals,
+            testimonials,
+            version,
+            futurePlans
+          }`,
+          { id }
+        );
+        
+        setProject(projectData);
+      } catch (err) {
+        setError("Error fetching project details.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!project) {
-    return <h1>Project not found!</h1>; // Handle the case where the project doesn't exist
+    fetchProject();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col container mx-auto pt-24 pb-8 text-center">
+        <Skeleton variant="text" height={120} width="60%" className="mb-4" />
+        <Skeleton variant="rectangular" height={200} className="rounded-lg mb-4" />
+        <Skeleton variant="text" height={120} className="mb-2" />
+        <Skeleton variant="text" height={120} className="mb-2" />
+        <Skeleton variant="text" height={120}  className="mb-6" />
+        <Skeleton variant="text" height={130} className="mb-2" />
+        <Skeleton variant="text" height={130} className="mb-6" />
+      </div>
+    );
   }
+
 
   return (
     <div className="flex flex-col container mx-auto pt-24 pb-8 text-center">
       {/* Title and Status */}
       <h1 className="text-3xl md:text-5xl font-bold font-primary mb-4">
-        {project.title}
+        {project?.title}
       </h1>
-  
+
       <div className="flex items-center space-x-2">
-          <span
-            className={`h-2 w-2 rounded-full ${project.statusColor} animate-glow`}
-          ></span>
-          <span className="text-sm">{project.status}</span>
-        </div>
+        <span className={`h-2 w-2 rounded-full ${project?.statusColor} animate-glow`}></span>
+        <span className="text-sm">{project?.status}</span>
+      </div>
+
       {/* Project Image */}
       <img
-        src={Img}
+        src={project?.image?.url} // Access the URL correctly from the nested structure
         className="w-full h-auto rounded-lg shadow-lg mb-6"
-        alt={`${project.title}`}
+        alt={project?.title}
       />
-
 
       {/* Description */}
       <p className="text-md md:text-lg max-w-2xl mx-auto mb-6 font-paragraph text-lightText">
-        {project.description}
+        {project?.description}
       </p>
-
 
       {/* Project Links */}
       <div className="flex justify-center space-x-4 mb-6">
-        <CustomBtn disabled={project.status!=="Live"}>{project.status}</CustomBtn>
+        <CustomBtn disabled={project?.status !== "Live"}>{project.status}</CustomBtn>
       </div>
 
       {/* Additional Information */}
       <div className="mb-6">
-      <div className="container mx-auto flex justify-center items-center text-center mb-12">
-        <HeadingsBtn text={"Goals"} icon={<GoGoal />} />
-      </div>
-        <p className="text-md md:text-lg font-paragraph text-lightText">{project.goals}</p>
+        <div className="container mx-auto flex justify-center items-center text-center mb-12">
+          <HeadingsBtn text={"Goals"} icon={<GoGoal />} />
+        </div>
+        <p className="text-md md:text-lg font-paragraph text-lightText">{project?.goals}</p>
       </div>
 
       {/* Future Plans */}
       <div className="mb-6">
-      <div className="container mx-auto flex justify-center items-center text-center mb-12">
-        <HeadingsBtn text={"Future Plans"} icon={<SiFuturelearn />} />
-      </div>
-        <p className="text-md md:text-lg font-paragraph text-lightText">
-          {project.futurePlans}
-        </p>
+        <div className="container mx-auto flex justify-center items-center text-center mb-12">
+          <HeadingsBtn text={"Future Plans"} icon={<SiFuturelearn />} />
+        </div>
+        <p className="text-md md:text-lg font-paragraph text-lightText">{project?.futurePlans}</p>
       </div>
 
       {/* Testimonials */}
       <div className="mb-6">
-      <div className="container mx-auto flex justify-center items-center text-center mb-12">
-        <HeadingsBtn text={"Testimonials"} icon={<BsChatSquareQuote />} />
-      </div>
+        <div className="container mx-auto flex justify-center items-center text-center mb-12">
+          <HeadingsBtn text={"Testimonials"} icon={<BsChatSquareQuote />} />
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {project.testimonials.map((test) => (
-            <div
-              key={test.name}
-              className="relative bg-white shadow-lg rounded-lg overflow-hidden font-paragraph text-lightText"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-accent to-transparent opacity-80"></div>
-              <div className="relative p-6 z-10">
-                <p className="text-md md:text-lg italic mb-2">
-                  "{test.feedback}"
-                </p>
-                <cite className="block text-sm text-lightText font-semibold">
-                  - {test.name}
-                </cite>
+          {Array.isArray(project?.testimonials) && project?.testimonials.length > 0 ? (
+            project.testimonials.map((test, index) => (
+              <div key={index} className="relative bg-white shadow-lg rounded-lg overflow-hidden font-paragraph text-lightText">
+                <div className="absolute inset-0 bg-gradient-to-r from-accent to-transparent opacity-80"></div>
+                <div className="relative p-6 z-10">
+                  <p className="text-md md:text-lg italic mb-2">"{test?.feedback}"</p>
+                  <cite className="block text-sm text-lightText font-semibold">- {test?.name}</cite>
+                </div>
+                <div className="absolute bottom-0 right-0 h-20 w-20 bg-accent rounded-full transform translate-x-1/2 translate-y-1/2 z-0"></div>
               </div>
-              <div className="absolute bottom-0 right-0 h-20 w-20 bg-accent rounded-full transform translate-x-1/2 translate-y-1/2 z-0"></div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No testimonials available.</p>
+          )}
         </div>
       </div>
 
       {/* Media Gallery */}
       <div>
-      <div className="container mx-auto flex justify-center items-center text-center mb-12">
-        <HeadingsBtn text={"Media"} icon={<GoFileMedia />} />
-      </div>
+        <div className="container mx-auto flex justify-center items-center text-center mb-12">
+          <HeadingsBtn text={"Media"} icon={<GoFileMedia />} />
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {project.media.map((mediaUrl, index) => (
-            <img
-              key={index}
-              src={Img}
-              className="w-full h-auto rounded-lg shadow-lg"
-              alt={`Media ${index + 1}`}
-            />
-          ))}
+          {Array.isArray(project?.media) && project?.media?.length > 0 ? (
+            project?.media.map((mediaItem, index) => (
+              <img
+                key={index}
+                src={mediaItem.asset.url} // Use the URL from the asset reference
+                className="w-full h-auto rounded-lg shadow-lg"
+                alt={`Media ${index + 1}`}
+              />
+            ))
+          ) : (
+            <p>No media available.</p>
+          )}
         </div>
       </div>
     </div>

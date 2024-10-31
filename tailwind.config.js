@@ -10,7 +10,8 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: ["Georgia", "sans-serif"],
-        paragraph: ["Poppins", "sans-serif"],
+        paragraph: ["inter", "inter Fallback", "ui-sans-serif, system-ui, sans-serif"],
+        
       },
 
       colors: {

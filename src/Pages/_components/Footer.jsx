@@ -29,12 +29,12 @@ const Footer = () => {
               </button>
             </li>
             <li>
-              <button  >
+              <button  onClick={()=>navigate('/privacypolicy')}>
                 Privacy Policy
               </button>
             </li>
             <li>
-              <button  >
+              <button  onClick={()=>navigate('/terms&conditions')}>
                 Terms & Conditions
               </button>
             </li>
@@ -55,22 +55,13 @@ const Footer = () => {
                 Discord
               </button>
             </li>
-            <li>
-              <button>
-                Github
-              </button>
-            </li>
-            <li>
-              <button>
-                YouTube
-              </button>
-            </li>
+            
           </ul>
         </div>
       </div>
 
       {/* Branding */}
-      <div className="text-center text-2xl lg:text-4xl font-bold tracking-wider mb-8 text-accent">
+      <div className="text-center text-2xl lg:text-4xl font-bold tracking-wider font-primary mb-8 text-accent">
         INNOVATE HUB
       </div>
 
