@@ -34,7 +34,7 @@ const Footer = () => {
               </button>
             </li>
             <li>
-              <button  onClick={()=>navigate('/terms&conditions')}>
+              <button  onClick={()=>navigate('/terms-and-conditions')}>
                 Terms & Conditions
               </button>
             </li>

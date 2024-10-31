@@ -15,98 +15,30 @@ const pageTransition = {
   transition: { duration: 0.3 },
 };
 
+const MotionRoute = ({ element }) => (
+  <motion.div
+    initial="initial"
+    animate="animate"
+    exit="exit"
+    variants={pageTransition}
+    transition={pageTransition.transition}
+  >
+    {element}
+  </motion.div>
+);
+
 const AllRouter = () => {
   const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <motion.div
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={pageTransition}
-              transition={pageTransition.transition}
-            >
-              <HomePage />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/projects/:id"
-          element={
-            <motion.div
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={pageTransition}
-              transition={pageTransition.transition}
-            >
-              <ProjectDetail />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/team"
-          element={
-            <motion.div
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={pageTransition}
-              transition={pageTransition.transition}
-            >
-              <TeamPage />
-            </motion.div>
-          }
-        />
-
-        <Route
-          path="/privacypolicy"
-          element={
-            <motion.div
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={pageTransition}
-              transition={pageTransition.transition}
-            >
-              <PrivacyPolicy />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/terms&conditions"
-          element={
-            <motion.div
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={pageTransition}
-              transition={pageTransition.transition}
-            >
-              <TermsAndConditions />
-            </motion.div>
-          }
-        />
-                <Route
-          path="*"
-          element={
-            <motion.div
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={pageTransition}
-              transition={pageTransition.transition}
-            >
-              <NotFound />
-            </motion.div>
-          }
-        />
-
+        <Route path="/" element={<MotionRoute element={<HomePage />} />} />
+        <Route path="/projects/:id" element={<MotionRoute element={<ProjectDetail />} />} />
+        <Route path="/team" element={<MotionRoute element={<TeamPage />} />} />
+        <Route path="/privacypolicy" element={<MotionRoute element={<PrivacyPolicy />} />} />
+        <Route path="/terms-and-conditions" element={<MotionRoute element={<TermsAndConditions />} />} />
+        <Route path="*" element={<MotionRoute element={<NotFound />} />} />
       </Routes>
     </AnimatePresence>
   );
