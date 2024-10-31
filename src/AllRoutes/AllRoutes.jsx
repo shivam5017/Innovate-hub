@@ -6,7 +6,7 @@ import ProjectDetail from "../Pages/Projects[id]";
 import TeamPage from "../Pages/Team";
 import PrivacyPolicy from "../Pages/PrivacyPolicy";
 import TermsAndConditions from "../Pages/TermsAndCondtions";
-
+import NotFound from "../Pages/NotFound";
 
 const pageTransition = {
   initial: { opacity: 0, y: 20 },
@@ -92,6 +92,21 @@ const AllRouter = () => {
             </motion.div>
           }
         />
+                <Route
+          path="*"
+          element={
+            <motion.div
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={pageTransition}
+              transition={pageTransition.transition}
+            >
+              <NotFound />
+            </motion.div>
+          }
+        />
+
       </Routes>
     </AnimatePresence>
   );
