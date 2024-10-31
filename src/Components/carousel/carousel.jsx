@@ -2,39 +2,11 @@ import React, { useState } from "react";
 import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { CustomBtn } from "../buttons/button";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import Img from "../../Images/img.png"; 
+import { useNavigate } from "react-router-dom";
 
-
-const projects = [
-  {
-    id: 1,
-    title: "PDF Builder",
-    status: "Coming Soon",
-    statusColor: "bg-yellow-500",
-    description: "Build PDF's easy and fast with just 1 click",
-    imageUrl: "path/to/your/image.jpg",
-    projectUrl: "https://devsmania.com",
-    media: [
-      "path/to/screenshot1.jpg",
-      "path/to/screenshot2.jpg",
-      "path/to/screenshot3.jpg",
-    ],
-    goals:
-      "To provide a platform for users to convert simple text into PDF's.",
-    testimonials: [
-      { name: "Alice", feedback: "This platform changed how I Build PDF's!" },
-      { name: "Bob", feedback: "A great resource for PDF's Building" },
-    ],
-    version: "1.0.0",
-    futurePlans: "Adding more collaboration tools in the next release.",
-  }
-  // Add more projects as needed
-];
-
-export default function Carousel() {
+export default function Carousel({ projects }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const nextProject = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
@@ -44,44 +16,38 @@ export default function Carousel() {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
   };
 
-  const handleProjectClick = (id) => {
-    navigate(`/projects/${id}`); // Navigate to the project page using the id
+  const handleProjectClick = (project) => {
+    if (project && project._id) {
+      navigate(`/projects/${project._id}`);
+    }
   };
 
   return (
-    <motion.section
-      id="projects"
-      className="flex flex-col items-center py-4 "
-    >
-      <motion.div className="relative mb-2 mt-8 w-full lg:w-[70%] overflow-hidden ">
+    <motion.section id="projects" className="flex flex-col items-center py-4">
+      <motion.div className="relative mb-2 mt-8 w-full lg:w-[70%] overflow-hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {projects.map((project) => (
-            
-            <div key={project.id} className="w-full flex-shrink-0 ">
-               
+            <div key={project._id} className="w-full flex-shrink-0">
               <div className="grid grid-cols-1 gap-4 rounded-xl border-2 p-4 lg:grid-cols-5">
-                <div 
-                  className="col-span-1 flex flex-col overflow-hidden rounded-xl bg-accent/30 md:col-span-3 cursor-pointer 
-                  border border-transparent " 
-                  onClick={() => handleProjectClick(project.id)} // Add click handler
+                <div
+                  className="col-span-1 flex flex-col overflow-hidden rounded-xl bg-accent/30 md:col-span-3 cursor-pointer"
+                  onClick={() => handleProjectClick(project)}
                 >
-                
                   <div className="mb-4 flex items-center">
-                 
                     <img
-                      src={Img}
+                      src={project.image?.url}
                       alt={project.title}
                       className="mr-4 h-12 w-12 rounded-full"
                     />
                     <div>
-                      <h3 className="text-xl font-primary font-bold">{project.title}</h3>
+                      <h3 className="text-xl font-primary font-bold">
+                        {project.title}
+                      </h3>
                       <div className="flex items-center space-x-2">
-                        <span
-                          className={`h-2 w-2 rounded-full ${project.statusColor}`}
-                        ></span>
+                        <span className={`h-2 w-2 rounded-full ${project.statusColor}`}></span>
                         <span className="text-sm font-paragraph">{project.status}</span>
                       </div>
                     </div>
@@ -90,9 +56,9 @@ export default function Carousel() {
                     <p className="text-sm font-paragraph">{project.description}</p>
                   </div>
                 </div>
-                <div className="rounded-xl border-2 bg-primary/5 drop-shadow-2xl md:col-span-2 h-full">
+                <div className="rounded-xl border-2 bg-primary/5 drop-shadow-2xl md:col-span-2 h-64">
                   <img
-                    src={Img}
+                    src={project.image?.url}
                     className="w-full h-full object-cover rounded-lg shadow-lg"
                     alt={`${project.title}`}
                   />
