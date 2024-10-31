@@ -3,7 +3,6 @@ import { useTheme } from "../../Contexts/ThemeContext";
 import ToggleButton from "../buttons/ToggleButton";
 import {CustomBtnWithIcon} from "../buttons/button";
 import { useNavigate } from "react-router-dom";
-import { IoMdLogIn } from "react-icons/io";
 import { Twitter } from "../svgs/AllSvgs";
 
 const Navbar = () => {
