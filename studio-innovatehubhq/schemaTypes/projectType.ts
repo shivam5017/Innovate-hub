@@ -45,7 +45,7 @@ export const projectType = defineType({
     }),
     defineField({
       name: 'image',
-      title: 'Project Image',
+      title: 'Image',
       type: 'image',
     }),
     defineField({
