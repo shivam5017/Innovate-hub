@@ -168,7 +168,7 @@ const ProjectDetail = () => {
                 width={32}
                 height={32}
                 loading="lazy"
-                srcSet={`${urlFor(mediaItem.asset).url()} 128w, ${urlFor(mediaItem.asset).url()}?size=256 256w`}
+
               />
             ))
           ) : (

@@ -44,12 +44,10 @@ export default function Carousel({ projects }) {
                       src={urlFor(project.image).url()} // Use urlFor for the small image
                       alt={project.title}
                       className="mr-4 rounded-full"
-                      width={12}
-                      height={12}
+                      width={100}
+                      height={120}
                       loading="lazy"
-                      srcSet={`${urlFor(project.image).url()} 128w, ${urlFor(
-                        project.image
-                      ).url()}?size=256 256w`}
+                      
                     />
 
                     <div>
@@ -75,7 +73,7 @@ export default function Carousel({ projects }) {
                 <div className="rounded-xl border-2 bg-primary/5 drop-shadow-2xl md:col-span-2 h-64">
                   <img
                     src={urlFor(project.image).url()} // Use urlFor for the large image
-                    className="w-full h-full object-cover rounded-lg shadow-lg"
+                    className="w-full h-full  object-fill rounded-lg shadow-lg"
                     alt={project.title}
                   />
                 </div>
