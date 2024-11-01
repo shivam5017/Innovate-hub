@@ -14,7 +14,9 @@ export default function Carousel({ projects }) {
   };
 
   const prevProject = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + projects.length) % projects.length
+    );
   };
 
   const handleProjectClick = (project) => {
@@ -41,20 +43,33 @@ export default function Carousel({ projects }) {
                     <img
                       src={urlFor(project.image).url()} // Use urlFor for the small image
                       alt={project.title}
-                      className="mr-4 h-12 w-12 rounded-full"
+                      className="mr-4 rounded-full"
+                      width={12}
+                      height={12}
+                      loading="lazy"
+                      srcSet={`${urlFor(project.image).url()} 128w, ${urlFor(
+                        project.image
+                      ).url()}?size=256 256w`}
                     />
+
                     <div>
                       <h3 className="text-xl font-primary font-bold">
                         {project.title}
                       </h3>
                       <div className="flex items-center space-x-2">
-                        <span className={`h-2 w-2 rounded-full ${project.statusColor}`}></span>
-                        <span className="text-sm font-paragraph">{project.status}</span>
+                        <span
+                          className={`h-2 w-2 rounded-full ${project.statusColor}`}
+                        ></span>
+                        <span className="text-sm font-paragraph">
+                          {project.status}
+                        </span>
                       </div>
                     </div>
                   </div>
                   <div className="my-4 flex-grow px-2">
-                    <p className="text-sm font-paragraph">{project.description}</p>
+                    <p className="text-sm font-paragraph">
+                      {project.description}
+                    </p>
                   </div>
                 </div>
                 <div className="rounded-xl border-2 bg-primary/5 drop-shadow-2xl md:col-span-2 h-64">

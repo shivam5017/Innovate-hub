@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {client, urlFor } from "../sanityClient"; // Import your Sanity client and urlFor function
+import { client, urlFor } from "../sanityClient"; // Import your Sanity client and urlFor function
 import { CustomBtn, HeadingsBtn } from "../Components/buttons/button";
 import { GoGoal } from "react-icons/go";
 import { SiFuturelearn } from "react-icons/si";
 import { BsChatSquareQuote } from "react-icons/bs";
 import { GoFileMedia } from "react-icons/go";
-import { Skeleton } from '@mui/material'; // Import MUI Skeleton
+import { Skeleton } from "@mui/material"; // Import MUI Skeleton
 
 const ProjectDetail = () => {
   const { id } = useParams(); // Get the project ID from the URL
@@ -38,7 +38,7 @@ const ProjectDetail = () => {
           }`,
           { id }
         );
-        
+
         setProject(projectData);
       } catch (err) {
         console.log(err);
@@ -54,10 +54,14 @@ const ProjectDetail = () => {
     return (
       <div className="flex flex-col container mx-auto pt-24 pb-8 text-center">
         <Skeleton variant="text" height={120} width="60%" className="mb-4" />
-        <Skeleton variant="rectangular" height={200} className="rounded-lg mb-4" />
+        <Skeleton
+          variant="rectangular"
+          height={200}
+          className="rounded-lg mb-4"
+        />
         <Skeleton variant="text" height={120} className="mb-2" />
         <Skeleton variant="text" height={120} className="mb-2" />
-        <Skeleton variant="text" height={120}  className="mb-6" />
+        <Skeleton variant="text" height={120} className="mb-6" />
         <Skeleton variant="text" height={130} className="mb-2" />
         <Skeleton variant="text" height={130} className="mb-6" />
       </div>
@@ -72,7 +76,9 @@ const ProjectDetail = () => {
       </h1>
 
       <div className="flex items-center space-x-2">
-        <span className={`h-2 w-2 rounded-full ${project?.statusColor} animate-glow`}></span>
+        <span
+          className={`h-2 w-2 rounded-full ${project?.statusColor} animate-glow`}
+        ></span>
         <span className="text-sm">{project?.status}</span>
       </div>
 
@@ -90,7 +96,9 @@ const ProjectDetail = () => {
 
       {/* Project Links */}
       <div className="flex justify-center space-x-4 mb-6">
-        <CustomBtn disabled={project?.status !== "Live"}>{project.status}</CustomBtn>
+        <CustomBtn disabled={project?.status !== "Live"}>
+          {project.status}
+        </CustomBtn>
       </div>
 
       {/* Additional Information */}
@@ -98,7 +106,9 @@ const ProjectDetail = () => {
         <div className="container mx-auto flex justify-center items-center text-center mb-12">
           <HeadingsBtn text={"Goals"} icon={<GoGoal />} />
         </div>
-        <p className="text-md md:text-lg font-paragraph text-lightText">{project?.goals}</p>
+        <p className="text-md md:text-lg font-paragraph text-lightText">
+          {project?.goals}
+        </p>
       </div>
 
       {/* Future Plans */}
@@ -106,7 +116,9 @@ const ProjectDetail = () => {
         <div className="container mx-auto flex justify-center items-center text-center mb-12">
           <HeadingsBtn text={"Future Plans"} icon={<SiFuturelearn />} />
         </div>
-        <p className="text-md md:text-lg font-paragraph text-lightText">{project?.futurePlans}</p>
+        <p className="text-md md:text-lg font-paragraph text-lightText">
+          {project?.futurePlans}
+        </p>
       </div>
 
       {/* Testimonials */}
@@ -115,13 +127,21 @@ const ProjectDetail = () => {
           <HeadingsBtn text={"Testimonials"} icon={<BsChatSquareQuote />} />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {Array.isArray(project?.testimonials) && project?.testimonials.length > 0 ? (
+          {Array.isArray(project?.testimonials) &&
+          project?.testimonials.length > 0 ? (
             project.testimonials.map((test, index) => (
-              <div key={index} className="relative bg-white shadow-lg rounded-lg overflow-hidden font-paragraph text-lightText">
+              <div
+                key={index}
+                className="relative bg-white shadow-lg rounded-lg overflow-hidden font-paragraph text-lightText"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-accent to-transparent opacity-80"></div>
                 <div className="relative p-6 z-10">
-                  <p className="text-md md:text-lg italic mb-2">"{test?.feedback}"</p>
-                  <cite className="block text-sm text-lightText font-semibold">- {test?.name}</cite>
+                  <p className="text-md md:text-lg italic mb-2">
+                    "{test?.feedback}"
+                  </p>
+                  <cite className="block text-sm text-lightText font-semibold">
+                    - {test?.name}
+                  </cite>
                 </div>
                 <div className="absolute bottom-0 right-0 h-20 w-20 bg-accent rounded-full transform translate-x-1/2 translate-y-1/2 z-0"></div>
               </div>
@@ -145,6 +165,10 @@ const ProjectDetail = () => {
                 src={urlFor(mediaItem.asset).url()} // Use urlFor for media items
                 className="w-full h-auto rounded-lg shadow-lg"
                 alt={`Media ${index + 1}`}
+                width={32}
+                height={32}
+                loading="lazy"
+                srcSet={`${urlFor(mediaItem.asset).url()} 128w, ${urlFor(mediaItem.asset).url()}?size=256 256w`}
               />
             ))
           ) : (
