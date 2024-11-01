@@ -62,8 +62,8 @@ const TeamPage = () => {
                     src={member?.image?.url}
                     alt={member?.name}
                     className="rounded-full mx-auto mb-4"
-                    width={32}
-                    height={32}
+                    width={56}
+                    height={56}
                     loading="lazy"
                     srcSet={`${member?.image?.url} 128w, ${member?.image?.url}?size=256 256w`}
                   />
